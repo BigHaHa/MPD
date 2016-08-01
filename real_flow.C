@@ -1,4 +1,4 @@
-
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #define real_flow_cxx
 #include "real_flow.h"
 
@@ -576,6 +576,14 @@ void real_flow::Loop()
    #endif
 }
 
+
+
+
+
+
+
+
+
 Int_t real_flow::GetMultiplicityTPC() //should be called in loop over events
 {
 	Int_t multiplicity = 0;
@@ -687,7 +695,7 @@ void real_flow::GetQsTpc(Int_t gap, Int_t weight, TVector3* part, Long64_t ntrac
 		if (!(part[ep_particle].Eta()*sign > EtaGap[gap])) continue;
 		w_part = sign;
 		//w_part = -sign;
-		if (harm==2) w_part = 1;
+		//if (harm==2) w_part = 1;
 		if (weight==0) w_part = sign*part[ep_particle].Pt();
 		Qcos += w_part /*/ total_weight*/ * Cos(harm*part[ep_particle].Phi());
 		Qsin += w_part /*/ total_weight*/ * Sin(harm*part[ep_particle].Phi());
