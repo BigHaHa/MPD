@@ -8,6 +8,8 @@
 #define _MAX_TRACKS 3000
 #define _MAX_MODULE 90
 
+//#define GsiLustre
+
 #ifndef real_flow_h
 #define real_flow_h
 
@@ -85,6 +87,12 @@ public :
    TFile*          f_out;
    TFile*          out_file;
    TTree*          out_tree;
+
+   #ifdef GsiLustre
+   TString in_tree=TString("/lustre/nyx/hades/user/parfenov/merged7GeV.root");
+   #else 
+   TString in_tree=TString("/mnt/pool/rhic/4/parfenovpeter/mpd_data/7.7gev/reco/merged.root");
+   #endif
 
    TProfile* p_flow_wrt_full_vs_pt[_N_SORTS][_N_CENTRALITY_BINS][_N_HARM][_N_HARM][_N_METHOD];
    TProfile* p_flow_wrt_full_vs_rapidity[_N_SORTS][_N_CENTRALITY_BINS][_N_HARM][_N_HARM][_N_METHOD];
@@ -221,9 +229,9 @@ real_flow::real_flow(TTree *tree) : fChain(0)
 // if parameter tree is not specified (or zero), connect the file
 // used to generate this class and read the Tree.
    if (tree == 0) {
-      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("../mpd_data/7.7gev/reco/merged.root");
+      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject(in_tree.Data());
       if (!f || !f->IsOpen()) {
-         f = new TFile("../mpd_data/7.7gev/reco/merged.root");
+         f = new TFile(in_tree.Data());
       }
       f->GetObject("cbmsim_reduced",tree);
 
