@@ -37,8 +37,8 @@ void real_flow::Loop()
    InitHisto();
    	#ifndef debug
    		//nentries = fChain->GetEntriesFast();
-   		nentries = 250000;
-   		//nentries = 10000;
+   		//nentries = 250000;
+   		nentries = 10000;
    	#elif defined debug
    		nentries = 10000;
    		cout << nentries << " Events:" << endl;
