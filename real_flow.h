@@ -8,7 +8,7 @@
 #define _MAX_TRACKS 3000
 #define _MAX_MODULE 90
 
-//#define GsiLustre
+#define GsiLustre
 
 #ifndef real_flow_h
 #define real_flow_h
