@@ -36,9 +36,9 @@ void real_flow::Loop()
 
    InitHisto();
    	#ifndef debug
-   		//nentries = fChain->GetEntriesFast();
+   		nentries = fChain->GetEntriesFast();
    		//nentries = 250000;
-   		nentries = 10000;
+   		//nentries = 10000;
    	#elif defined debug
    		nentries = 10000;
    		cout << nentries << " Events:" << endl;
@@ -693,7 +693,8 @@ void real_flow::GetQsTpc(Int_t gap, Int_t weight, TVector3* part, Long64_t ntrac
 	{
 		/////////////////////////////////////////////////////////////
 		if (!(part[ep_particle].Eta()*sign > EtaGap[gap])) continue;
-		w_part = sign;
+		//w_part = sign;
+		w_part = 1;
 		//w_part = -sign;
 		//if (harm==2) w_part = 1;
 		if (weight==0) w_part = sign*part[ep_particle].Pt();
@@ -927,7 +928,7 @@ Double_t real_flow::GetPsiHalfTpc(Int_t gap, Int_t weight, TVector3* part, Long6
 	Qx = Qcos;
 	Qy = Qsin;
 	Double_t PsiEP = (1/(Double_t)harm) * ATan2(Qsin,Qcos);
-	//if (harm==1 && sign==1) PsiEP-=Pi();
+	if (harm==1 && sign==1) PsiEP-=Pi();
 	return PsiEP;
 }
 
